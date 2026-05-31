@@ -17,18 +17,23 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {args: {variant: 'primary', size: 'md'}}
-
-export const Secondary: Story = {args: {variant: 'secondary', size: 'md'}}
-
-export const Ghost: Story = {args: {variant: 'ghost', size: 'md'}}
+export const Colors: Story = {
+    render: (args: ButtonProps) => (
+        <>
+            <Button {...args} size="md" variant="primary">Button (Primary)</Button>{' '}
+            <Button {...args} size="md" variant="secondary">Button (Secondary)</Button>{' '}
+            <Button {...args} size="md" variant="ghost">Button (Ghost)</Button>
+        </>
+    )
+}
 
 export const Sizes: Story = {
     render: (args: ButtonProps) => (
         <>
-            <Button {...args} size="sm">Small</Button>{' '}
-            <Button {...args} size="md">Medium</Button>{' '}
-            <Button {...args} size="lg">Large</Button>
+            <Button {...args} size="sm">Button (sm)</Button>{' '}
+            <Button {...args} size="md">Button (md)</Button>{' '}
+            <Button {...args} size="lg">Button (lg)</Button>{' '}
+            <Button {...args} size="xl">Button (xl)</Button>
         </>
     ),
     args: {variant: 'primary'},

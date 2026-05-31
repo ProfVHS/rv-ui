@@ -3,7 +3,7 @@ import * as React from 'react'
 export interface ButtonProps
     extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> {
     variant?: 'primary' | 'secondary' | 'ghost'
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xl'
     children: React.ReactNode
 }
 

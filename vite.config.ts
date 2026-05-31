@@ -1,21 +1,26 @@
 import {defineConfig} from 'vite'
 import react from '@vitejs/plugin-react'
-import {resolve} from "path"
-import dts from "vite-plugin-dts"
+import {resolve} from 'path'
+import dts from 'vite-plugin-dts'
 
-// https://vite.dev/config/
 export default defineConfig({
     plugins: [
         react(),
-        dts({include: ['lib']})
+        dts({include: ['lib']}),
     ],
     build: {
         lib: {
             entry: resolve(__dirname, 'lib/main.ts'),
-            formats: ['es']
+            formats: ['es'],
         },
         rollupOptions: {
-            external: ['react', 'react/jsx-runtime'],
-        }
-    }
+            external: ['react', 'react-dom', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+            output: {
+                entryFileNames: 'index.js',
+                assetFileNames: (assetInfo) =>
+                    assetInfo.name?.endsWith('.css') ? 'styles.css' : 'assets/[name][extname]',
+            },
+        },
+        cssCodeSplit: false,
+    },
 })

@@ -1,0 +1,46 @@
+@use '../../styles/variables' as *;
+
+$sizes: (
+        sm: (padding: 4px 10px, font-size: 13px),
+        md: (padding: 8px 16px, font-size: 14px),
+        lg: (padding: 12px 24px, font-size: 16px),
+);
+
+$variants: (
+        primary: (bg: $color-primary, hover: $color-primary-hover, text: $color-text-light),
+        secondary: (bg: $color-secondary, hover: $color-secondary-hover, text: $color-text-light),
+        ghost: (bg: $color-ghost, hover: $color-ghost-hover, text: $color-text-dark),
+);
+
+.rvui-button {
+  font-family: $font-family;
+  font-weight: 500;
+  border: 1px solid transparent;
+  border-radius: $radius;
+  cursor: pointer;
+  transition: $transition;
+  line-height: 1.5;
+
+  @each $name, $colors in $variants {
+    &--#{$name} {
+      background-color: map-get($colors, bg);
+      color: map-get($colors, text);
+
+      &:hover {
+        background-color: map-get($colors, hover);
+      }
+    }
+  }
+
+  @each $name, $props in $sizes {
+    &--#{$name} {
+      padding: map-get($props, padding);
+      font-size: map-get($props, font-size);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
